@@ -167,7 +167,7 @@ object islaCerditos
 class Pared
 {
 	var ancho
-	var material
+	var material // algo resistente
 	constructor(anchoPared, materialPared)	{
 		ancho = anchoPared
 		material = materialPared
@@ -177,7 +177,7 @@ class Pared
 	}
 }
 
-class Material	{
+class Resistente	{
 	var resistencia
 
 	constructor(resis)	{
@@ -197,23 +197,12 @@ class CerditoObrero {
 }
 
 class CerditoArmado {
-	var elemento 
+	var elemento // algo resistente
 	constructor(elem)	{
 		elemento = elem
 	}
 	
 	method resistencia() {
 		return 10 * elemento.resistencia()
-	}
-}
-object casco {
-	method resistencia() {
-		return 1
-	}
-}
-
-object escudo {
-	method resistencia() {
-		return 2
 	}
 }
