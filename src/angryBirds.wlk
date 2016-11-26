@@ -54,12 +54,17 @@ class Pajaro {
 }
 
 class Rencoroso inherits Pajaro{
-	var cantCosasEnojar
+	var cantCosasEnojar = 0
 	var multiplicador
 	
 	constructor(_ira,_cosas,_multiplicador) = super(_ira) {
 		cantCosasEnojar = _cosas
 		multiplicador = _multiplicador
+	}
+	
+	override method enojarse() {
+		cantCosasEnojar += 1
+		super()
 	}
 	
 	override method fuerza(){
@@ -119,6 +124,8 @@ class FiestaSorpresa{
 	method alterar(pajaro){
 		if(homenajeados.contains(pajaro))
 			pajaro.enojarse()
+		else if (homenajeados.isEmpty())
+			throw new Exception("No puede haber una fiesta sorpresa sin homenajeados")
 	}
 }	
 class SerieDeEventosDesafortunados{
@@ -129,24 +136,6 @@ class SerieDeEventosDesafortunados{
 }
 
 class IslaCerdito
-{
-	var obstaculos = [] 
-	constructor (_obstaculos){
-		obstaculos = _obstaculos
-	}
-	
-	method obstaculos()
-	{
-		return obstaculos
-	}	
-	
-	method libreDeObstaculos()	{
-		return obstaculos.isEmpty()
-	}
-}
-
-
-object islaCerditos
 {
 	var obstaculos = []
 	
@@ -163,7 +152,6 @@ object islaCerditos
 	}
 }
 
-
 class Pared
 {
 	var ancho
@@ -177,7 +165,7 @@ class Pared
 	}
 }
 
-class Resistente	{
+class Resistente {
 	var resistencia
 
 	constructor(resis)	{
