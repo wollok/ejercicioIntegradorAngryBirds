@@ -79,7 +79,7 @@ object bomb inherits Pajaro(ira){
 	}	
 }
 
-object chuck inherits Pajaro(ira){	
+object chuck inherits Pajaro(0){	
 	var velocidad = 1
 	
 	override method fuerza(){ 
@@ -93,7 +93,7 @@ object chuck inherits Pajaro(ira){
 	}	
 }
 
-object matilda inherits Pajaro(ira){
+object matilda inherits Pajaro(0){
 	var huevos = []		
 	override method fuerza(){ 
 		return super() + huevos.sum({huevo => huevo.fuerza()})
@@ -161,7 +161,7 @@ class Pared
 		material = materialPared
 	}
 	method resistencia() {
-		return materialPared.resistencia()*ancho
+		return material.resistencia()*ancho
 	}
 }
 
