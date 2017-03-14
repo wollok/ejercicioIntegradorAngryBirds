@@ -75,9 +75,10 @@ test "Un pajarito comun no puede derribar a chachito con casco" {
 	assert.notThat(fixture.pajarito().puedeDerribar(fixture.cerditoCasco()))
 }
 
-test "Isla pajaro ataca isla cerdito y no recupera todos los huevos" {
+test "Isla pajaro ataca isla cerdito, con red enojado, y no recupera todos los huevos" {
 	fixture.iniciarIslaPajaro()
 	fixture.iniciarIslaCerdito()
+	fixture.red().enojarse()
 	islaPajaro.atacar(islaCerdito)
 	assert.notThat(islaCerdito.libreDeObstaculos())
 }
