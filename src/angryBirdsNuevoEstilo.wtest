@@ -59,7 +59,6 @@ test object angryBird {
 		islaPajaro.atacar(islaCerdito)
 	}
 
-}
 //}
 
 //import angryBirds.*
