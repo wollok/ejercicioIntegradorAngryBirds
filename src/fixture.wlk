@@ -3,8 +3,8 @@ import angryBirds.*
 object fixture {
 
 	const pajarito = new Pajaro(10)
-	const red = new Rencoroso(10,5,2)
-	const terence = new Rencoroso(10,10,2)
+	const red = new Rencoroso(10,10)
+	const terence = new Rencoroso(10,2)
 	
 	const vidrio = new Resistente(10) 
 	const madera = new Resistente(25) 
@@ -26,6 +26,8 @@ object fixture {
 	method cerditoCasco() = cerditoCasco
 	
 	method iniciarIslaPajaro() {
+		red.enojarse()
+		terence.enojarse()
 		islaPajaro.agregarPajaro(pajarito)
 		islaPajaro.agregarPajaro(red)
 		islaPajaro.agregarPajaro(bomb)

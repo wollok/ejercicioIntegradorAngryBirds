@@ -24,11 +24,10 @@ class Pajaro {
 }
 
 class Rencoroso inherits Pajaro{
-	var cantCosasEnojar
+	var cantCosasEnojar = 0
 	var multiplicador
 	
-	constructor(_ira,_cosas,_multiplicador) = super(_ira) {
-		cantCosasEnojar = _cosas
+	constructor(_ira, _multiplicador) = super(_ira) {
 		multiplicador = _multiplicador
 	}
 	
@@ -38,7 +37,7 @@ class Rencoroso inherits Pajaro{
 	}
 	
 	override method fuerza(){
-		return super() * multiplicador * cantCosasEnojar
+		return ira * multiplicador * cantCosasEnojar
 	}	
 }
 
