@@ -1,7 +1,7 @@
 # Angry Birds
 ## Ejercicio integrador
 
-![]("Angry Birds.jpg")
+![](Angry_Birds.jpg)
 
 **Un día normal, Red, Chuck y los Blues cuidaban su nido y sus huevos, mientras que por allí cerca pasaba una expedición conformada por el Rey Cerdo, y unos cerdos obreros buscando comida. Ven a lo lejos unos huevos y se les antojan. Entonces, Red y sus compañeros se distraen. Después de un rato se dan cuenta de que los huevos no están y ven a los cerdos cocinándolos. Así se inicia una guerra entre los Pájaros y los Cerdos.**
 
