@@ -1,10 +1,6 @@
 class Pajaro {	
 	var ira
 	
-	constructor (_ira){
-		ira = _ira
-	}
-	
 	method enojarse(){
 		ira *= 2
 	}
@@ -27,9 +23,6 @@ class Rencoroso inherits Pajaro{
 	var cantCosasEnojar = 0
 	var multiplicador
 	
-	constructor(_ira, _multiplicador) = super(_ira) {
-		multiplicador = _multiplicador
-	}
 	
 	override method enojarse() {
 		cantCosasEnojar += 1
@@ -41,14 +34,14 @@ class Rencoroso inherits Pajaro{
 	}	
 }
 
-object bomb inherits Pajaro(10){	
+object bomb inherits Pajaro(ira = 10){	
 	var maximoFuerza = 9000
 	override method fuerza()	{ 
 		return super().min(maximoFuerza)
 	}	
 }
 
-object chuck inherits Pajaro(10){	
+object chuck inherits Pajaro(ira = 10){	
 	var velocidad = 100
 	
 	override method fuerza(){ 
@@ -62,23 +55,19 @@ object chuck inherits Pajaro(10){
 	}	
 }
 
-object matilda inherits Pajaro(10){
-	var huevos = [new Huevo(5),new Huevo(3)]		
+object matilda inherits Pajaro(ira = 10){
+	var huevos = [new Huevo(peso=5),new Huevo(peso = 3)]		
 	override method fuerza(){ 
 		return super() + huevos.sum({huevo => huevo.fuerza()})
 	}
 		
 	override method enojarse()	{ 
-		huevos.add(new Huevo(2))
+		huevos.add(new Huevo(peso = 2))
 	}		
 }
 
 class Huevo {
 	var peso
-	
-	constructor (_peso)	{
-		peso = _peso
-	}
 	
 	method fuerza()	{
 		return peso
@@ -118,21 +107,15 @@ object sesionDeManejoDeLaIra{
 class InvasionDeCerditos{
 	var cantidadInvasores
 	
-	constructor(inv){
-		cantidadInvasores = inv
-	}
 
 	method alterar(pajaro){
-		cantidadInvasores.div(100).times({pajaro.enojarse()})
+		cantidadInvasores.div(100).times({x=>pajaro.enojarse()})
 	}
 }
 	
 class FiestaSorpresa{
 	var homenajeados
 	
-	constructor(pajaros){
-		homenajeados = pajaros
-	}
 	method alterar(pajaro){
 		if(homenajeados.contains(pajaro))
 			pajaro.enojarse()
@@ -141,11 +124,8 @@ class FiestaSorpresa{
 	}
 }	
 class SerieDeEventosDesafortunados{
-	var eventos 
+	var eventos = [] 
 	
-	constructor(serie){
-		eventos = serie
-	}
 	method alterar(pajaro){
 		eventos.forEach{evento=>evento.alterar(pajaro)}
 	}
@@ -172,26 +152,15 @@ class Pared
 {
 	var ancho
 	var material // algo resistente
-	constructor(anchoPared, materialPared)	{
-		ancho = anchoPared
-		material = materialPared
-	}
+
 	method resistencia() {
 		return material.resistencia()*ancho
 	}
 }
 
 class Resistente {
-	var resistencia
+	var property resistencia
 
-	constructor(resis)	{
-		resistencia = resis
-	}
-
-	method resistencia() {
-		return resistencia
-	}
-	
 }
 
 object cerditoObrero {
@@ -202,9 +171,6 @@ object cerditoObrero {
 
 class CerditoArmado {
 	var elemento // algo resistente
-	constructor(elem)	{
-		elemento = elem
-	}
 	
 	method resistencia() {
 		return 10 * elemento.resistencia()
