@@ -1,4 +1,7 @@
 # Angry Birds
+ 
+[![Build Status](https://travis-ci.org/wollok/ejercicioIntegradorAngryBirds.svg?branch=master)](https://travis-ci.org/wollok/ejercicioIntegradorAngryBirds)
+
 ## Ejercicio integrador
 
 ![](Angry%20Birds.jpg)
