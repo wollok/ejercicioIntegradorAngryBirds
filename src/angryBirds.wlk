@@ -19,8 +19,11 @@ class Pajaro {
 	}
 }
 
+const pajarito = new Pajaro(ira = 10)
+
+
 class Rencoroso inherits Pajaro{
-	var cantCosasEnojar = 0
+	var cantCosasEnojar = 1
 	var multiplicador
 	
 	
@@ -33,6 +36,9 @@ class Rencoroso inherits Pajaro{
 		return ira * multiplicador * cantCosasEnojar
 	}	
 }
+const red = new Rencoroso(ira = 10, multiplicador = 10)
+const terence = new Rencoroso(ira = 10, multiplicador = 2)
+
 
 object bomb inherits Pajaro(ira = 10){	
 	var maximoFuerza = 9000
@@ -75,8 +81,7 @@ class Huevo {
 }
 
 object islaPajaro {
-	var pajaros = []
-
+	var pajaros = [pajarito,red,bomb,chuck,terence,matilda]
 	method agregarPajaro(pajaro){
 		pajaros.add(pajaro)
 	}
@@ -106,7 +111,6 @@ object sesionDeManejoDeLaIra{
 
 class InvasionDeCerditos{
 	var cantidadInvasores
-	
 
 	method alterar(pajaro){
 		cantidadInvasores.div(100).times({x=>pajaro.enojarse()})
@@ -120,7 +124,7 @@ class FiestaSorpresa{
 		if(homenajeados.contains(pajaro))
 			pajaro.enojarse()
 		else if (homenajeados.isEmpty())
-			throw new Exception("No puede haber una fiesta sorpresa sin homenajeados")
+			throw new Exception(message = "No puede haber una fiesta sorpresa sin homenajeados")
 	}
 }	
 class SerieDeEventosDesafortunados{
@@ -131,9 +135,8 @@ class SerieDeEventosDesafortunados{
 	}
 }
 
-object islaCerdito
-{
-	var obstaculos = []
+object islaCerdito {
+	var obstaculos = [paredPiedra,paredVidrio,paredMadera,otraParedVidrio,cerditoObrero,cerditoCasco,cerditoEscudo,cerditoObrero]
 	
 	method agregarObstaculo(obstaculo) {
 		obstaculos.add(obstaculo)
@@ -148,8 +151,17 @@ object islaCerdito
 	}
 }
 
-class Pared
-{
+class Resistente {
+	var property resistencia
+}
+
+const vidrio = new Resistente(resistencia = 10) 
+const madera = new Resistente(resistencia = 25) 
+const piedra = new Resistente(resistencia = 50) 
+const casco = new Resistente(resistencia =20)
+const escudo = new Resistente(resistencia =50)
+
+class Pared {
 	var ancho
 	var material // algo resistente
 
@@ -158,10 +170,10 @@ class Pared
 	}
 }
 
-class Resistente {
-	var property resistencia
-
-}
+const paredPiedra = new Pared(ancho = 5, material = piedra)
+const paredMadera = new Pared(ancho = 2, material = madera)
+const paredVidrio = new Pared(ancho = 10, material = vidrio)
+const otraParedVidrio = new Pared(ancho =1, material = vidrio)
 
 object cerditoObrero {
 	method resistencia(){
@@ -176,3 +188,6 @@ class CerditoArmado {
 		return 10 * elemento.resistencia()
 	}
 }
+const cerditoCasco = new CerditoArmado(elemento = casco)
+const cerditoEscudo = new CerditoArmado(elemento = escudo)
+

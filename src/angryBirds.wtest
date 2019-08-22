@@ -1,128 +1,90 @@
 import angryBirds.*
 
 describe "Cuidado con los pajaros" {
-	
-	const pajarito = new Pajaro(ira = 10)
-	const red = new Rencoroso(ira = 10, multiplicador = 10)
-	const terence = new Rencoroso(ira = 10,multiplicador = 2)
-	
-	const vidrio = new Resistente(resistencia = 10) 
-	const madera = new Resistente(resistencia =25) 
-	const piedra = new Resistente(resistencia = 50) 
-	const casco = new Resistente(resistencia =20)
-	const escudo = new Resistente(resistencia =50)
-	
-	const paredPiedra = new Pared(ancho = 5, material = piedra)
-	const paredMadera = new Pared(ancho =2, material = madera)
-	const paredVidrio = new Pared(ancho =10, material = vidrio)
-	const otraParedVidrio = new Pared(ancho =1, material = vidrio)
-	const cerditoCasco = new CerditoArmado(elemento = casco)
-	const cerditoEscudo = new CerditoArmado(elemento = escudo)
 
-	fixture {
-		self.iniciarIslaPajaro()
-		self.iniciarIslaCerdito()
+	test "La fuerza de un pajaro comun de ira 10 es 20" {
+		assert.equals(20, pajarito.fuerza())
 	}
 	
-	method iniciarIslaPajaro() {
+	test "La fuerza de Red inicial es 100" {
+		assert.equals(100, red.fuerza())
+	}
+	
+	test "La fuerza de Red enojado una vez es 400" {
 		red.enojarse()
+		assert.equals(400, red.fuerza())
+	}
+	
+	test "La fuerza de Terence enojado una vez, con multiplicador 2 es 40" {
 		terence.enojarse()
-		islaPajaro.agregarPajaro(pajarito)
-		islaPajaro.agregarPajaro(red)
-		islaPajaro.agregarPajaro(bomb)
-		islaPajaro.agregarPajaro(chuck)
-		islaPajaro.agregarPajaro(terence)
-		islaPajaro.agregarPajaro(matilda)
+		assert.equals(80, terence.fuerza())
 	}
 	
-	method iniciarIslaCerdito(){
-		islaCerdito.agregarObstaculo(paredPiedra)
-		islaCerdito.agregarObstaculo(paredVidrio)
-		islaCerdito.agregarObstaculo(paredMadera)
-		islaCerdito.agregarObstaculo(otraParedVidrio)
-		islaCerdito.agregarObstaculo(cerditoObrero)
-		islaCerdito.agregarObstaculo(cerditoCasco)
-		islaCerdito.agregarObstaculo(cerditoEscudo)
-		islaCerdito.agregarObstaculo(cerditoObrero)
-	}
-
-test "La fuerza de un pajaro comun de ira 10 es 20" {
-	assert.equals(20, pajarito.fuerza())
-}
-
-test "La fuerza de Red, con ira 10 y 1 cosas que lo hizo enojar, es 200" {
-	assert.equals(200, red.fuerza())
-}
-
-test "La fuerza de Terence, con ira 10, multiplicador 2 y 1 cosas que lo hizo enojar, es 40" {
-	assert.equals(40, terence.fuerza())
-}
-
-test "La fuerza de Matilda, con ira 10, un huevo de 5 y otro de 3, es 28" {
-	assert.equals(28, matilda.fuerza())
-}
-
-test "La fuerza de bomb, con ira 10 es 20" {
-	assert.equals(20, bomb.fuerza())
-}
-
-test "La fuerza de chuck, con ira 10 y velocidad 100 es 250" {
-	assert.equals(250, chuck.fuerza())
-}
-
-test "La fuerza de chuck, con ira 10 y velocidad 100, luego de enojarse, es 750" {
-	chuck.enojarse()
-	assert.equals(750, chuck.fuerza())
-}
-
-test "La fuerza de la isla pajaro es 450"{
-// 200 de Red, 250 de Chuck
-	assert.equals(450,islaPajaro.fuerza())
+	test "La fuerza de Matilda, con ira 10, un huevo de 5 y otro de 3, es 28" {
+		assert.equals(28, matilda.fuerza())
 	}
 	
-// 2. Una isla Siniestra
-
-test "Con sesion de manejo de ira, 400 es la fuerza de la isla" {
-// 150 de Red, 250 de Chuck
-	islaPajaro.suceder(sesionDeManejoDeLaIra)
-	assert.equals(400, islaPajaro.fuerza())
-}
-
-test "Con invasion de 150 cerditos, 1710 es la fuerza de la isla" {
-	islaPajaro.suceder(new InvasionDeCerditos(cantidadInvasores = 150))
-	assert.equals(1710, islaPajaro.fuerza())
-}
-
-test "Con fiesta sorpresa para chuck y matilda, 950 es la fuerza de la isla" {
-// 200 de Red, 750 de Chuck enojado
-	islaPajaro.suceder(new FiestaSorpresa(homenajeados = [matilda,chuck]))
-	assert.equals(950, islaPajaro.fuerza())
-}
-
-test "Con serie de eventos desafortunados, 2590 es la fuerza de la isla" {
-	islaPajaro.suceder(new SerieDeEventosDesafortunados(eventos = [new FiestaSorpresa(homenajeados = [matilda,chuck]), new InvasionDeCerditos(cantidadInvasores = 150), sesionDeManejoDeLaIra]))
-	assert.equals(2590, islaPajaro.fuerza())
-}
-
-// 3. Guerra porcina
-test "Chuck puede derribar a chachito obrero" {
-	assert.that(chuck.puedeDerribar(cerditoObrero))
-}
-
-test "Un pajarito comun no puede derribar a chachito con casco" {
-	assert.notThat(pajarito.puedeDerribar(cerditoCasco))
-}
-
-test "Isla pajaro ataca isla cerdito, con red enojado, y no recupera todos los huevos" {
-	red.enojarse()
-	islaPajaro.atacar(islaCerdito)
-	assert.notThat(islaCerdito.libreDeObstaculos())
-}
-
-test "Isla pajaro ataca isla cerdito, con chuck enojado y recupera todos los huevos" {
-	chuck.enojarse()
-	islaPajaro.atacar(islaCerdito)
-	assert.notThat(islaCerdito.libreDeObstaculos())
-}
+	test "La fuerza de bomb, con ira 10 es 20" {
+		assert.equals(20, bomb.fuerza())
+	}
+	
+	test "La fuerza de chuck, con ira 10 y velocidad 100 es 250" {
+		assert.equals(250, chuck.fuerza())
+	}
+	
+	test "La fuerza de chuck, con ira 10 y velocidad 100, luego de enojarse, es 750" {
+		chuck.enojarse()
+		assert.equals(750, chuck.fuerza())
+	}
+	
+	test "La fuerza de la isla pájaro, es la sumatoria de la fuerza de los pajaros"{
+		// 100 de Red , 250 de Chuck
+		assert.equals(100+250,islaPajaro.fuerza())
+		}
+		
+	// 2. Una isla Siniestra
+	
+	test "Con sesión de manejo de ira, 400 es la fuerza de la isla" {
+		islaPajaro.suceder(sesionDeManejoDeLaIra)
+		assert.equals(250, islaPajaro.fuerza())
+		// 	250 de Chuck (red tranquilizado deja de ser fuerte)
+	}
+	
+	test "Con invasión de 150 cerditos, la fuerza de la isla varia" {
+		islaPajaro.suceder(new InvasionDeCerditos(cantidadInvasores = 150))
+		assert.equals(1230, islaPajaro.fuerza())
+	}
+	
+	test "La fiesta sorpresa hace enojar a chuck y matilda" {
+		islaPajaro.suceder(new FiestaSorpresa(homenajeados = [matilda,chuck]))
+		assert.equals(750, chuck.fuerza())
+		assert.equals(30, matilda.fuerza())
+	}
+	
+	test "Con serie de eventos desafortunados, la fuerza de la isla varia" {
+		islaPajaro.suceder(new SerieDeEventosDesafortunados(eventos = [new FiestaSorpresa(homenajeados = [matilda,chuck]), new InvasionDeCerditos(cantidadInvasores = 150), sesionDeManejoDeLaIra]))
+		assert.equals(2110, islaPajaro.fuerza())
+	}
+	
+	// 3. Guerra porcina
+	test "Chuck puede derribar a chachito obrero" {
+		assert.that(chuck.puedeDerribar(cerditoObrero))
+	}
+	
+	test "Un pajarito comun no puede derribar a chachito con casco" {
+		assert.notThat(pajarito.puedeDerribar(cerditoCasco))
+	}
+	
+	test "Isla pajaro ataca isla cerdito, con red enojado, y no recupera todos los huevos" {
+		red.enojarse()
+		islaPajaro.atacar(islaCerdito)
+		assert.notThat(islaCerdito.libreDeObstaculos())
+	}
+	
+	test "Isla pajaro ataca isla cerdito, con chuck enojado y recupera todos los huevos" {
+		chuck.enojarse()
+		islaPajaro.atacar(islaCerdito)
+		assert.notThat(islaCerdito.libreDeObstaculos())
+	}
 }
 
