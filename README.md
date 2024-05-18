@@ -1,6 +1,6 @@
 # Angry Birds
  
-[![Build Status](https://travis-ci.org/wollok/ejercicioIntegradorAngryBirds.svg?branch=master)](https://travis-ci.org/wollok/ejercicioIntegradorAngryBirds)
+[![Build Status](https://github.com/wollok/ejercicioIntegradorAngryBirds/actions/workflows/ci.yml/badge.svg)](https://github.com/wollok/ejercicioIntegradorAngryBirds/actions/workflows/ci.yml)
 
 ## Ejercicio integrador
 
