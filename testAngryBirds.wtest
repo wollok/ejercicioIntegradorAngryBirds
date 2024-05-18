@@ -1,7 +1,6 @@
 import angryBirds.*
 
 describe "Cuidado con los pajaros" {
-
 	test "La fuerza de un pajaro comun de ira 10 es 20" {
 		assert.equals(20, pajarito.fuerza())
 	}
@@ -37,12 +36,10 @@ describe "Cuidado con los pajaros" {
 		assert.equals(750, chuck.fuerza())
 	}
 	
-	test "La fuerza de la isla pájaro, es la sumatoria de la fuerza de los pajaros"{
+	test "La fuerza de la isla pájaro, es la sumatoria de la fuerza de los pajaros" {
 		// 100 de Red , 250 de Chuck
-		assert.equals(100+250,islaPajaro.fuerza())
-		}
-		
-	// 2. Una isla Siniestra
+		assert.equals(100 + 250, islaPajaro.fuerza())
+	}
 	
 	test "Con sesión de manejo de ira, 400 es la fuerza de la isla" {
 		islaPajaro.suceder(sesionDeManejoDeLaIra)
@@ -56,17 +53,24 @@ describe "Cuidado con los pajaros" {
 	}
 	
 	test "La fiesta sorpresa hace enojar a chuck y matilda" {
-		islaPajaro.suceder(new FiestaSorpresa(homenajeados = [matilda,chuck]))
+		islaPajaro.suceder(new FiestaSorpresa(homenajeados = [matilda, chuck]))
 		assert.equals(750, chuck.fuerza())
 		assert.equals(30, matilda.fuerza())
 	}
 	
 	test "Con serie de eventos desafortunados, la fuerza de la isla varia" {
-		islaPajaro.suceder(new SerieDeEventosDesafortunados(eventos = [new FiestaSorpresa(homenajeados = [matilda,chuck]), new InvasionDeCerditos(cantidadInvasores = 150), sesionDeManejoDeLaIra]))
+		islaPajaro.suceder(
+			new SerieDeEventosDesafortunados(
+				eventos = [
+					new FiestaSorpresa(homenajeados = [matilda, chuck]),
+					new InvasionDeCerditos(cantidadInvasores = 150),
+					sesionDeManejoDeLaIra
+				]
+			)
+		)
 		assert.equals(2110, islaPajaro.fuerza())
 	}
 	
-	// 3. Guerra porcina
 	test "Chuck puede derribar a chachito obrero" {
 		assert.that(chuck.puedeDerribar(cerditoObrero))
 	}
@@ -87,4 +91,3 @@ describe "Cuidado con los pajaros" {
 		assert.notThat(islaCerdito.libreDeObstaculos())
 	}
 }
-
